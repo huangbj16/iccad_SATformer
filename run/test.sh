@@ -14,6 +14,6 @@ python3 test.py \
  --spc --spc_kl \
  --binary_loss_weight 1 --clause_loss_weight 1 \
  --num_rounds ${RD} \
- --batch_size 8 --gpu --num_epochs 500 --lr 1e-4 --shuffle --lr_step 15 \
+ --batch_size 32 --gpu --num_epochs 500 --lr 1e-4 --shuffle --lr_step 15 \
  --disable_core \
  --resume
