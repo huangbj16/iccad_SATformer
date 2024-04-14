@@ -6,10 +6,10 @@ from utils.dataset_utils import cnf_parse_pyg
 import utils.cnf_utils as cnf_utils
 
 class LocalDataset(InMemoryDataset):
-    def __init__(self, args, root, transform=None, pre_transform=None, pre_filter=None):
+    def __init__(self, root, args, transform=None, pre_transform=None, pre_filter=None):
         self.name = args.dataset
         self.args = args
-        self.raw_dir = self.rawdata_dir
+        self.rawdata_dir = self.args.rawdata_dir
         print('total # of problems: ', self.args.n_pairs)
         super().__init__(root, transform, pre_transform, pre_filter)
         self.data, self.slices = torch.load(self.processed_paths[0])
@@ -17,7 +17,7 @@ class LocalDataset(InMemoryDataset):
     @property
     def raw_file_names(self):
         # This will list all CNF files in the raw directory
-        return [f for f in os.listdir(self.raw_dir) if os.path.isfile(os.path.join(self.raw_dir, f))]
+        return [f for f in os.listdir(self.rawdata_dir) if os.path.isfile(os.path.join(self.rawdata_dir, f))]
 
     @property
     def processed_file_names(self):
@@ -29,12 +29,12 @@ class LocalDataset(InMemoryDataset):
 
     def process(self):
         data_list = []
-        file_path_pattern = os.path.join(self.raw_dir, '*.txt')  # Assuming all files have .cnf extensiona
+        file_path_pattern = os.path.join(self.rawdata_dir, '*.txt')  # Assuming all files have .txt extensiona
         files = glob.glob(file_path_pattern)
 
         for file_name in files[:100]:  # Limit to loading 100 instances
             cnf, n_vars = cnf_utils.read_cnf(file_name)
-            graph_data = cnf_parse_pyg(cnf, is_sat=None, num_vars=n_vars, num_clauses=len(cnf))
+            graph_data = cnf_parse_pyg(self.args, cnf, label=1, n_vars=n_vars, n_clauses=len(cnf))
             data_list.append(graph_data)
 
         data, slices = self.collate(data_list)
