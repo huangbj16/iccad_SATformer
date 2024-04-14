@@ -95,17 +95,17 @@ if __name__ == '__main__':
     print('AUC: {:.2f}'.format(roc_auc))
     print('*'*20)
 
-    # Adjust threshold by AUC
-    opt_thro = thro[np.argmax(tpr - fpr)]
-    pred = (preds_val > opt_thro)
-    print()
-    print('='*20)
-    print('Threshold: {:.4f}'.format(opt_thro))
-    print('TP: {:.2f}%'.format(((pred == 1) & (y_val == 1)).sum()*100.0 / g_cnt))
-    print('TN: {:.2f}%'.format(((pred == 0) & (y_val == 0)).sum()*100.0 / g_cnt))
-    print('FP: {:.2f}%'.format(((pred == 1) & (y_val == 0)).sum()*100.0 / g_cnt))
-    print('FN: {:.2f}%'.format(((pred == 0) & (y_val == 1)).sum()*100.0 / g_cnt))
-    print('ACC: {:.2f}%'.format((pred == y_val).sum()*100.0 / g_cnt))
-    print('='*20)
+    # # Adjust threshold by AUC
+    # opt_thro = thro[np.argmax(tpr - fpr)]
+    # pred = (preds_val > opt_thro)
+    # print()
+    # print('='*20)
+    # print('Threshold: {:.4f}'.format(opt_thro))
+    # print('TP: {:.2f}%'.format(((pred == 1) & (y_val == 1)).sum()*100.0 / g_cnt))
+    # print('TN: {:.2f}%'.format(((pred == 0) & (y_val == 0)).sum()*100.0 / g_cnt))
+    # print('FP: {:.2f}%'.format(((pred == 1) & (y_val == 0)).sum()*100.0 / g_cnt))
+    # print('FN: {:.2f}%'.format(((pred == 0) & (y_val == 1)).sum()*100.0 / g_cnt))
+    # print('ACC: {:.2f}%'.format((pred == y_val).sum()*100.0 / g_cnt))
+    # print('='*20)
 
     
