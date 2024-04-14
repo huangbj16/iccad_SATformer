@@ -17,5 +17,5 @@ python3 test.py \
  --batch_size 32 --gpu --num_epochs 500 --lr 1e-4 --shuffle --lr_step 15 \
  --resume \
  --load_model 'model_500.pth' \
- --rawdata_dir '/content/domain_data/barabasi_albert_graph/k_dominating_set' \
+ --rawdata_dir '/content/deep_evaluation_models/domain_data/barabasi_albert_graph/k_dominating_set' \
  --dataset_name 'barabasi_albert_graph___k_dominating_set'
