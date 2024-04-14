@@ -21,17 +21,17 @@ class DeepSetConv(MessagePassing):
         self.msg_post = None if mlp_post is None else mlp_post
 
 
-    def forward(self, x, edge_index, edge_attr=None, **kwargs):
+    def forward(self, x, edge_index, **kwargs):
         # x has shape [N, in_channels]
         # edge_index has shape [2, E]
 
-        return self.propagate(edge_index, x=x, edge_attr=edge_attr)
+        return self.propagate(edge_index, x=x)
 
-    def message(self, x_j, edge_attr=None):
+    def message(self, x_j):
         # TODO: add the normalization part like AggConv
         # x_j has shape [E, dim_emb]
         if self.wea:
-            return self.msg(torch.cat((x_j, edge_attr), dim=1))
+            return self.msg(torch.cat((x_j), dim=1))
         else:
             return self.msg(x_j)
 
