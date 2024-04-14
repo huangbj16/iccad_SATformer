@@ -8,4 +8,4 @@ python3 train.py \
  --spc --spc_kl \
  --binary_loss_weight 1 --clause_loss_weight 1 \
  --num_rounds 26 \
- --batch_size 32 --gpu --num_epochs 500 --lr 1e-4 --shuffle --lr_step 15 
+ --batch_size 32 --gpu --num_epochs 10 --lr 1e-4 --shuffle --lr_step 15 
