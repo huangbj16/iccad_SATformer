@@ -29,7 +29,7 @@ class LocalDataset(InMemoryDataset):
 
     def process(self):
         data_list = []
-        file_path_pattern = os.path.join(self.raw_dir, '*.cnf')  # Assuming all files have .cnf extension
+        file_path_pattern = os.path.join(self.raw_dir, '*.txt')  # Assuming all files have .cnf extensiona
         files = glob.glob(file_path_pattern)
 
         for file_name in files[:100]:  # Limit to loading 100 instances
