@@ -94,6 +94,7 @@ def get_parse_args():
     parser.add_argument('--group_loss_weight', type=float, default=1)
 
     # Dataset
+    parser.add_argument('--dataset_name', type=str, default='default')
     parser.add_argument('--reverse_label', action='store_true', default=False)
     parser.add_argument('--dataset', default='random', type=str, choices=['benchmark', 'random', 'block', 'cnfgen', 'sr', 'local'],
                              metavar='NAME', help='target dataset')
@@ -128,12 +129,6 @@ def get_parse_args():
 
     args = parser.parse_args()
 
-    if args.dataset == 'benchmark':
-        args.dataset_name = '{}_{}'.format(args.dataset, args.benchmark_name)
-    elif args.dataset == 'sr' or args.dataset == 'random':
-        args.dataset_name = '{}_sr{:}_{:}_{:}'.format('random', args.min_n, args.max_n, args.n_pairs)
-    else:
-        args.dataset_name = '{}_sr{:}_{:}_{:}'.format(args.dataset, args.min_n, args.max_n, args.n_pairs)
     if args.community:
         args.random_augment = 1
     args.cnfgen_n = args.cnfgen_n.split(',')
