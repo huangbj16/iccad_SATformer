@@ -95,7 +95,7 @@ def get_parse_args():
 
     # Dataset
     parser.add_argument('--reverse_label', action='store_true', default=False)
-    parser.add_argument('--dataset', default='random', type=str, choices=['benchmark', 'random', 'block', 'cnfgen', 'sr'],
+    parser.add_argument('--dataset', default='random', type=str, choices=['benchmark', 'random', 'block', 'cnfgen', 'sr', 'local'],
                              metavar='NAME', help='target dataset')
     parser.add_argument('--dim_node_feature', type=int, default=4)
     parser.add_argument('--trainval_split', default=0.9, type=float,
