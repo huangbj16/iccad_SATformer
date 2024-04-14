@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
         ret = detector.run(g)
         
-        binary_res = ret['results'][0].to('cpu')
+        binary_res = ret['results'][0]
         pred = (binary_res > args.thro).int()
         y = (g.y > args.thro).int()
         output_list += binary_res.tolist()
@@ -62,7 +62,7 @@ if __name__ == '__main__':
         g_cnt += len(y)
 
         if args.spc:
-            core_res = ret['results'][2].to('cpu')
+            core_res = ret['results'][2]
             core_acc = ((core_res > 0.1288) & (g.unsat_core > 0.5)).sum() / len(core_res)
             # output_list += core_res.tolist()
             # y_list += (g.unsat_core > 0.5).int().tolist()
