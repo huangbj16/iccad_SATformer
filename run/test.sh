@@ -10,10 +10,12 @@ python3 test.py \
  --transformer_type fpn --rd_type clause --readout average \
  --window_pooling linear --level_pooling max \
  --windows_size 4 --head_num 8 --TF_depth 4 \
- --dataset random --min_n ${SR} --max_n ${SR} --cv_ratio ${CV} --n_pairs 10 \
+ --dataset local --min_n ${SR} --max_n ${SR} --cv_ratio ${CV} --n_pairs 10 \
  --spc --spc_kl \
  --binary_loss_weight 1 --clause_loss_weight 1 \
  --num_rounds ${RD} \
  --batch_size 32 --gpu --num_epochs 500 --lr 1e-4 --shuffle --lr_step 15 \
  --disable_core \
- --resume
+ --resume \
+ --load_model 'model_10.pth' \
+ --rawdata_dir '/content/graph_coloring' \
