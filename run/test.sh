@@ -18,3 +18,4 @@ python3 test.py \
  --resume \
  --load_model 'model_500.pth' \
  --rawdata_dir '/content/domain_data/barabasi_albert_graph/k_dominating_set' \
+ --dataset_name 'barabasi_albert_graph___k_dominating_set'
