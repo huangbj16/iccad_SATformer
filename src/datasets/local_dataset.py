@@ -32,9 +32,10 @@ class LocalDataset(InMemoryDataset):
         file_path_pattern = os.path.join(self.rawdata_dir, '*.txt')  # Assuming all files have .txt extensiona
         files = glob.glob(file_path_pattern)
 
-        for file_name in files[:100]:  # Limit to loading 100 instances
+        for file_name in files:
+            label = 0 if 'unsat' in file_name else 1
             cnf, n_vars = cnf_utils.read_cnf(file_name)
-            graph_data = cnf_parse_pyg(self.args, cnf, label=1, n_vars=n_vars, n_clauses=len(cnf))
+            graph_data = cnf_parse_pyg(self.args, cnf, label, n_vars=n_vars, n_clauses=len(cnf))
             data_list.append(graph_data)
 
         data, slices = self.collate(data_list)
